@@ -26,7 +26,7 @@ end
 def load_current_resource
   @current_resource = Chef::Resource::OhaiHint.new(new_resource.name)
   if ::File.exist?(build_ohai_hint_path)
-    @current_resource.content(JSON.parse(::File.read(build_ohai_hint_path)))
+    @current_resource.content(JSON.parse(::File.read(build_ohai_hint_path, :encoding => 'utf-8')))
   else
     @current_resource.content(nil)
   end
